@@ -9,6 +9,9 @@ import UIKit
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //MARK: - Properties
+    
+    //MARK: @IBOutlets
     @IBOutlet var userNameLabel: UILabel!
     
     @IBOutlet var userPhotoImageView: UIImageView! {
@@ -20,8 +23,10 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
+    //MARK: private properties
    private let storageManager = StorageManager.shared
     
+    //MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +78,20 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         present(alert, animated: true, completion: nil)
     }
     
+    
+    // Выбор фото из фотобиблиотеки
+    
     private func selectImage() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary // Выбор фото из фотобиблиотеки
+        imagePicker.sourceType = .photoLibrary
         
         present(imagePicker, animated: true, completion: nil)
     }
     
     
     //MARK: - Picker Delegate
+    
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
