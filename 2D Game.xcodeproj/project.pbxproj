@@ -69,6 +69,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		78ABF51F2AC0A50A00F9CFE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78C576822ABCA10C004274C4 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		78C5766D2ABCA10A004274C4 = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +102,7 @@
 				78C5769B2ABCB404004274C4 /* Extensions */,
 				78ABF5192AC08FBE00F9CFE1 /* Models */,
 				78C5769C2ABCB485004274C4 /* Storyboards */,
-				78C576822ABCA10C004274C4 /* Assets.xcassets */,
-				78C576842ABCA10C004274C4 /* LaunchScreen.storyboard */,
+				78ABF51F2AC0A50A00F9CFE1 /* Resources */,
 			);
 			path = "2D Game";
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				78C5767F2ABCA10B004274C4 /* Main.storyboard */,
+				78C576842ABCA10C004274C4 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
