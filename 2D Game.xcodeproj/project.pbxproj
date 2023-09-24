@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78ABF5182AC08FB400F9CFE1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABF5172AC08FB400F9CFE1 /* Record.swift */; };
+		78ABF51B2AC0912700F9CFE1 /* Extension + UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */; };
+		78ABF51D2AC0A03B00F9CFE1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABF51C2AC0A03B00F9CFE1 /* StorageManager.swift */; };
 		78C5767A2ABCA10B004274C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C576792ABCA10B004274C4 /* AppDelegate.swift */; };
 		78C5767C2ABCA10B004274C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C5767B2ABCA10B004274C4 /* SceneDelegate.swift */; };
 		78C5767E2ABCA10B004274C4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C5767D2ABCA10B004274C4 /* MainViewController.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78ABF5172AC08FB400F9CFE1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableViewController.swift"; sourceTree = "<group>"; };
+		78ABF51C2AC0A03B00F9CFE1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		78C576762ABCA10A004274C4 /* 2D Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "2D Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C576792ABCA10B004274C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78C5767B2ABCA10B004274C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78ABF5192AC08FBE00F9CFE1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				78ABF5172AC08FB400F9CFE1 /* Record.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		78ABF51E2AC0A21B00F9CFE1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				78ABF51C2AC0A03B00F9CFE1 /* StorageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		78C5766D2ABCA10A004274C4 = {
 			isa = PBXGroup;
 			children = (
@@ -68,7 +90,9 @@
 			children = (
 				78C5768D2ABCA502004274C4 /* Application */,
 				78C5768E2ABCA513004274C4 /* ViewControllers */,
+				78ABF51E2AC0A21B00F9CFE1 /* Services */,
 				78C5769B2ABCB404004274C4 /* Extensions */,
+				78ABF5192AC08FBE00F9CFE1 /* Models */,
 				78C5769C2ABCB485004274C4 /* Storyboards */,
 				78C576822ABCA10C004274C4 /* Assets.xcassets */,
 				78C576842ABCA10C004274C4 /* LaunchScreen.storyboard */,
@@ -101,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				78C576972ABCB340004274C4 /* Extension + UIViewController.swift */,
+				78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */,
 				78C576992ABCB3BA004274C4 /* Extension + UIView.swift */,
 			);
 			path = Extensions;
@@ -186,7 +211,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C576902ABCA54F004274C4 /* GameViewController.swift in Sources */,
+				78ABF51B2AC0912700F9CFE1 /* Extension + UITableViewController.swift in Sources */,
+				78ABF51D2AC0A03B00F9CFE1 /* StorageManager.swift in Sources */,
 				78C5767E2ABCA10B004274C4 /* MainViewController.swift in Sources */,
+				78ABF5182AC08FB400F9CFE1 /* Record.swift in Sources */,
 				78C576982ABCB340004274C4 /* Extension + UIViewController.swift in Sources */,
 				78C5767A2ABCA10B004274C4 /* AppDelegate.swift in Sources */,
 				78C576922ABCA563004274C4 /* RecordListViewController.swift in Sources */,
