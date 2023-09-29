@@ -30,17 +30,14 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //MARK: - View life cycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradient()
         storageManager.loadUserName(userNameLabel)
         storageManager.loadUserPhoto(imageView: userPhotoImageView)
         
-        if userPhotoImageView.image == nil {
-            addPhotoButton.setTitle("Добавить фото", for: .normal)
-        } else {
-            addPhotoButton.setTitle("Изменить фото", for: .normal)
-        }
+        checkPhoto()
     }
     
     //MARK: - @IBActions
@@ -55,6 +52,13 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     //MARK: - Private funcs
+    private func checkPhoto() {
+        if userPhotoImageView.image == nil {
+            addPhotoButton.setTitle("Добавить фото", for: .normal)
+        } else {
+            addPhotoButton.setTitle("Изменить фото", for: .normal)
+        }
+    }
     
     private func alert() {
         let alert = UIAlertController(
