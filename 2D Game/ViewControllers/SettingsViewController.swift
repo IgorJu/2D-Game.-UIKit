@@ -14,6 +14,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     //MARK: @IBOutlets
     @IBOutlet var userNameLabel: UILabel!
     
+    @IBOutlet var addPhotoButton: UIButton!
+    
     @IBOutlet var userPhotoImageView: UIImageView! {
         didSet {
             userPhotoImageView.layer.cornerRadius = userPhotoImageView.frame.height / 2
@@ -34,6 +36,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         storageManager.loadUserName(userNameLabel)
         storageManager.loadUserPhoto(imageView: userPhotoImageView)
         
+        if userPhotoImageView.image == nil {
+            addPhotoButton.setTitle("Добавить фото", for: .normal)
+        } else {
+            addPhotoButton.setTitle("Изменить фото", for: .normal)
+        }
     }
     
     //MARK: - @IBActions
