@@ -295,12 +295,9 @@
                                     <constraint firstAttribute="width" constant="15" id="jCk-eO-KvR"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plane-3" translatesAutoresizingMaskIntoConstraints="NO" id="GZb-DF-Udg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="plane-3" translatesAutoresizingMaskIntoConstraints="NO" id="GZb-DF-Udg">
                                 <rect key="frame" x="125" y="398" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="BGZ-gq-TkH"/>
-                                    <constraint firstAttribute="width" constant="70" id="jbp-wD-PZQ"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kCI-86-aDt">
                                 <rect key="frame" x="245" y="76" width="15" height="412"/>
@@ -340,8 +337,6 @@
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="tHB-Ha-C4y" secondAttribute="top" constant="32" id="Fjd-lf-ZJO"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="eB7-3a-4pI" secondAttribute="top" id="LNT-WA-nZW"/>
                             <constraint firstItem="5dC-id-gKn" firstAttribute="centerX" secondItem="Svw-dD-5JO" secondAttribute="centerX" id="Msi-yv-q0D"/>
-                            <constraint firstItem="tHB-Ha-C4y" firstAttribute="bottom" secondItem="GZb-DF-Udg" secondAttribute="bottom" constant="100" id="dqE-dd-h7f"/>
-                            <constraint firstItem="GZb-DF-Udg" firstAttribute="centerX" secondItem="5dC-id-gKn" secondAttribute="centerX" id="jkf-6d-E8e"/>
                             <constraint firstAttribute="bottom" secondItem="kCI-86-aDt" secondAttribute="bottom" constant="80" id="n9w-QO-K5N"/>
                             <constraint firstItem="tHB-Ha-C4y" firstAttribute="bottom" secondItem="5dC-id-gKn" secondAttribute="bottom" constant="20" id="q51-NS-g6Y"/>
                         </constraints>
@@ -361,7 +356,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q1Q-24-ulr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sOn-U1-nCn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

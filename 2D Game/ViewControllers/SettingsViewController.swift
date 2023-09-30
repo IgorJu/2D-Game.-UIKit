@@ -46,7 +46,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         alert()
     }
     
-    
     @IBAction func addAvatar() {
         selectImage()
     }
