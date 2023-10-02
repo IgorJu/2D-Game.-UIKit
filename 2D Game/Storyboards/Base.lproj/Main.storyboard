@@ -327,16 +327,27 @@
                                     <constraint firstItem="NKG-8v-RyI" firstAttribute="top" secondItem="5di-oX-CJU" secondAttribute="bottom" constant="7" id="gUk-fb-qd4"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Очков:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftX-XS-LpH">
+                                <rect key="frame" x="160" y="40" width="140" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="dh5-SP-MCV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tHB-Ha-C4y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="eB7-3a-4pI" secondAttribute="bottom" constant="80" id="6sR-7l-5Qu"/>
                             <constraint firstItem="tHB-Ha-C4y" firstAttribute="trailing" secondItem="kCI-86-aDt" secondAttribute="trailing" constant="60" id="7GM-or-bRL"/>
+                            <constraint firstItem="tHB-Ha-C4y" firstAttribute="trailing" secondItem="ftX-XS-LpH" secondAttribute="trailing" constant="20" id="D06-ZH-f3P"/>
                             <constraint firstItem="eB7-3a-4pI" firstAttribute="leading" secondItem="tHB-Ha-C4y" secondAttribute="leading" constant="60" id="Dnb-c1-Geq"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="tHB-Ha-C4y" secondAttribute="top" constant="32" id="Fjd-lf-ZJO"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="eB7-3a-4pI" secondAttribute="top" id="LNT-WA-nZW"/>
                             <constraint firstItem="5dC-id-gKn" firstAttribute="centerX" secondItem="Svw-dD-5JO" secondAttribute="centerX" id="Msi-yv-q0D"/>
+                            <constraint firstItem="ftX-XS-LpH" firstAttribute="top" secondItem="Svw-dD-5JO" secondAttribute="top" constant="40" id="hHr-BB-fGr"/>
                             <constraint firstAttribute="bottom" secondItem="kCI-86-aDt" secondAttribute="bottom" constant="80" id="n9w-QO-K5N"/>
                             <constraint firstItem="tHB-Ha-C4y" firstAttribute="bottom" secondItem="5dC-id-gKn" secondAttribute="bottom" constant="20" id="q51-NS-g6Y"/>
                         </constraints>
@@ -344,6 +355,7 @@
                     <navigationItem key="navigationItem" id="iXf-my-Bl0"/>
                     <connections>
                         <outlet property="airplaneView" destination="GZb-DF-Udg" id="Eks-Sw-261"/>
+                        <outlet property="scoresLabel" destination="ftX-XS-LpH" id="WO3-8Q-Iik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPz-Wz-0Ba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -356,7 +368,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q1Q-24-ulr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sOn-U1-nCn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

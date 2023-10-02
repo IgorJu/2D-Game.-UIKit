@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordListViewController: UITableViewController {
+final class RecordListViewController: UITableViewController {
     
     let records: [Record] = []
     
