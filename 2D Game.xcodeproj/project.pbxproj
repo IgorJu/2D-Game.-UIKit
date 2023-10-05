@@ -21,6 +21,7 @@
 		78C576942ABCA570004274C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C576932ABCA570004274C4 /* SettingsViewController.swift */; };
 		78C576982ABCB340004274C4 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C576972ABCB340004274C4 /* Extension + UIViewController.swift */; };
 		78C5769A2ABCB3BA004274C4 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C576992ABCB3BA004274C4 /* Extension + UIView.swift */; };
+		78FBBEA12ACEC4490004D80D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FBBEA02ACEC4490004D80D /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		78C576932ABCA570004274C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		78C576972ABCB340004274C4 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		78C576992ABCB3BA004274C4 /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
+		78FBBEA02ACEC4490004D80D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				78ABF51C2AC0A03B00F9CFE1 /* StorageManager.swift */,
+				78FBBEA02ACEC4490004D80D /* GameManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C576902ABCA54F004274C4 /* GameViewController.swift in Sources */,
+				78FBBEA12ACEC4490004D80D /* GameManager.swift in Sources */,
 				78ABF51B2AC0912700F9CFE1 /* Extension + UITableViewController.swift in Sources */,
 				78ABF51D2AC0A03B00F9CFE1 /* StorageManager.swift in Sources */,
 				78C5767E2ABCA10B004274C4 /* MainViewController.swift in Sources */,
