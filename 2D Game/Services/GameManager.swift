@@ -21,6 +21,6 @@ class GameManager {
     }
     
     func fetchRecords() -> [Record] {
-        records
+        records.sorted { $0.scores > $1.scores }
     }
 }

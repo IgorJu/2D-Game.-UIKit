@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct Record {
+struct Record  {
     let scores: Int
 }
+

@@ -17,26 +17,23 @@ final class GameViewController: UIViewController {
     private var scores = 0
     private var gameTimer: Timer? = nil
     
-    
-    private var stormAnimator: UIViewPropertyAnimator?
     private var enemyAnimator: UIViewPropertyAnimator?
     private var cloudAnimator: UIViewPropertyAnimator?
     
     private var enemies: [UIImageView] = []
-    
+    private var storms: [UIImageView] = []
     private var clouds: [UIImageView] = []
     
-    private var storms: [UIImageView] = []
-    
+    private var isGameOver = false
     
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        startGame()
-        createDisplayLink()
-        setAirplaneFrame()
         setupGradient()
+        setAirplaneFrame()
+        createDisplayLink()
+        startGame()
     }
     //MARK: - IBActions
     
@@ -59,72 +56,129 @@ final class GameViewController: UIViewController {
         airplaneView.frame.origin.y = view.frame.maxY * 0.8
     }
     
-    private func callObstacle() {
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
-            self?.addEnemyPlanes()
-            self?.addStormView()
-            self?.addClouds()
+    
+    func checkCollision(enemy: UIView) -> Bool  {
+        var checkCollission = false
+        if let enemyPresentedFrame = enemy.layer.presentation()?.frame,
+           let presentedFrame = self.airplaneView.layer.presentation()?.frame {
+            
+            let planeX = presentedFrame.origin.x
+            let enemyX = enemyPresentedFrame.origin.x
+            
+            let planeY = presentedFrame.origin.y
+            let enemyYBottom = enemyPresentedFrame.origin.y + enemyPresentedFrame.height
+            
+            if planeX - enemyX < Constants.enemySize
+                && enemyX - planeX < Constants.enemySize
+                && planeY - enemyYBottom < 0 {
+                checkCollission = true
+            }
+        }
+        return checkCollission
+    }
+    
+    private func createDisplayLink() {
+        let displayLink = CADisplayLink(target: self, selector: #selector(step))
+        displayLink.add(to: .current, forMode: .default)
+    }
+    
+    @objc private func step(displayLink: CADisplayLink) {
+        if isGameOver {
+            return
+        } else {
+            enemies.forEach { enemy in
+                if checkCollision(enemy: enemy) {
+                    enemyAnimator?.stopAnimation(true)
+                    enemyAnimator?.finishAnimation(at: .current)
+                    
+                    cloudAnimator?.stopAnimation(true)
+                    cloudAnimator?.finishAnimation(at: .current)
+                    
+                    gameTimer?.invalidate()
+                    alert()
+                }
+            }
         }
     }
     
-    private func addStormView() {
-        //MARK: Left storm
-        
-        let leftStorm = UIImageView(image: UIImage(named: GameImageNames.storm))
-        leftStorm.frame = CGRect(
-            x: .zero,
-            y: Constants.ySpawn,
-            width: Constants.bigImageSize,
-            height: Constants.bigImageSize
+    //MARK:  Alert
+    private func alert() {
+        GameManager.shared.reportCollision(record: Record(scores: scores))
+        isGameOver = true
+        let alert = UIAlertController(
+            title: "Игра окончена.\nВы набрали \(scores) очков",
+            message: "",
+            preferredStyle: .alert
         )
-        storms.append(leftStorm)
-        view.addSubview(leftStorm)
         
-        stormAnimator = UIViewPropertyAnimator(duration: 9, curve: .linear) {
-            leftStorm.frame = CGRect(
-                x: leftStorm.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize,
-                width: Constants.bigImageSize,
-                height: Constants.bigImageSize
+        alert.addAction(
+            UIAlertAction(
+                title: "Начать заново",
+                style: .default,
+                handler: { [weak self] _ in
+                    self?.dismiss(animated: true) {
+                        self?.enemies.forEach { $0.removeFromSuperview() }
+                        self?.enemies.removeAll()
+                        
+                        self?.clouds.forEach { $0.removeFromSuperview() }
+                        self?.clouds.removeAll()
+                    }
+                    self?.restartGame()
+                }
+                
             )
-        }
-        stormAnimator?.addCompletion { [weak self] (_) in
-            leftStorm.removeFromSuperview()
-            self?.stormAnimator = nil
-        }
-        stormAnimator?.startAnimation()
-        
-        
-        //MARK: RightStorm
-        let xRightStorm = view.frame.width - Constants.bigImageSize
-        let rightStorm = UIImageView(image: UIImage(named: GameImageNames.storm))
-        
-        rightStorm.frame = CGRect(
-            x: xRightStorm,
-            y: Constants.ySpawn,
-            width: Constants.bigImageSize,
-            height: Constants.bigImageSize
         )
-        storms.append(rightStorm)
-        view.addSubview(rightStorm)
         
-        stormAnimator = UIViewPropertyAnimator(duration: 9, curve: .linear) {
-            rightStorm.frame = CGRect(
-                x: rightStorm.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize,
-                width: Constants.bigImageSize,
-                height: Constants.bigImageSize
-            )
-        }
-        stormAnimator?.addCompletion { [weak self] (_) in
-            leftStorm.removeFromSuperview()
-            self?.stormAnimator = nil
-        }
-        stormAnimator?.startAnimation()
+        alert.addAction(UIAlertAction(title: "Закончить игру", style: .cancel, handler:  { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     
-    //MARK: Enemy planes
+    private func startGame() {
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGame), userInfo: nil, repeats: true)
+        addEnemyPlanes()
+        addClouds()
+    }
+    
+    private func restartGame() {
+        isGameOver = false
+        scores = 0
+        setAirplaneFrame()
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGame), userInfo: nil, repeats: true)
+        addEnemyPlanes()
+        addClouds()
+        
+    }
+    
+    private func updateScoreLabel() {
+        scoresLabel.text = "Счет: \(scores)"
+    }
+    
+    @objc func updateGame() {
+        scores += 1
+        updateScoreLabel()
+    }
+}
+
+private enum Constants {
+    static let moveToSide = 40.0
+    static let enemySize = 60.0
+    static let bigImageSize = 50.0
+    static let smallImageSize = 40.0
+    static let ySpawn = -50.0
+    static let enemyDuration = 3.0
+    static let objectDuration = 10.0
+}
+
+private enum GameImageNames {
+    static let enemy = "enemy"
+    static let cloud = "cloud"
+    static let storm = "storm-2"
+}
+
+extension GameViewController {
     private func addEnemyPlanes() {
         let xRandomSpawn = Double.random(in: 60...250)
         let enemy = UIImageView(image: UIImage(named: GameImageNames.enemy))
@@ -133,26 +187,26 @@ final class GameViewController: UIViewController {
         enemy.frame = CGRect(
             x: xRandomSpawn,
             y: Constants.ySpawn,
-            width: Constants.bigImageSize,
-            height: Constants.bigImageSize
+            width: Constants.enemySize,
+            height: Constants.enemySize
         )
         view.addSubview(enemy)
         
-        enemyAnimator = UIViewPropertyAnimator(duration: 3, curve: .linear) {
+        enemyAnimator = UIViewPropertyAnimator(duration: Constants.enemyDuration, curve: .linear) {
             enemy.frame = CGRect(
                 x: enemy.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize,
-                width: Constants.bigImageSize,
-                height: Constants.bigImageSize
+                y: self.view.frame.height + Constants.enemySize,
+                width: Constants.enemySize,
+                height: Constants.enemySize
             )
         }
         enemyAnimator?.addCompletion { [weak self] (_) in
             enemy.removeFromSuperview()
             self?.enemies.removeAll()
             self?.enemyAnimator = nil
+            self?.addEnemyPlanes()
         }
         enemyAnimator?.startAnimation()
-                
     }
     
     //MARK:  Clouds
@@ -169,7 +223,7 @@ final class GameViewController: UIViewController {
         
         view.addSubview(cloud)
         
-        cloudAnimator = UIViewPropertyAnimator(duration: 15, curve: .linear) {
+        cloudAnimator = UIViewPropertyAnimator(duration: Constants.objectDuration, curve: .linear) {
             cloud.frame = CGRect(
                 x: cloud.frame.origin.x,
                 y: self.view.frame.height + Constants.bigImageSize,
@@ -177,171 +231,16 @@ final class GameViewController: UIViewController {
                 height: Constants.smallImageSize
             )
         }
+        
         cloudAnimator?.addCompletion { [weak self] (_) in
             cloud.removeFromSuperview()
             self?.cloudAnimator = nil
+            self?.clouds.removeAll()
+            self?.addClouds()
         }
         
         cloudAnimator?.startAnimation()
-        
-        //        if isCollision {
-        //            cloudAnimator?.stopAnimation(true)
-        //            cloudAnimator = nil
-        //        }
-        
-        let cloudTwo = UIImageView(image: UIImage(named: GameImageNames.cloud))
-        
-        cloudTwo.frame = CGRect(
-            x:  Double.random(in: 60...250),
-            y: Constants.ySpawn,
-            width: Constants.smallImageSize,
-            height: Constants.smallImageSize
-        )
-        clouds.append(cloudTwo)
-        
-        view.addSubview(cloudTwo)
-        
-        cloudAnimator = UIViewPropertyAnimator(duration: 15, curve: .linear){
-            cloudTwo.frame = CGRect(
-                x: cloudTwo.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize,
-                width: Constants.smallImageSize,
-                height: Constants.smallImageSize
-            )
-        }
-        cloudAnimator?.addCompletion { [weak self] (_) in
-            cloudTwo.removeFromSuperview()
-            self?.cloudAnimator = nil
-        }
-        cloudAnimator?.startAnimation()
-        //        if isCollision {
-        //            cloudAnimator?.stopAnimation(true)
-        //            cloudAnimator = nil
-        //        }
     }
-    
-    
-    private func checkCollision(enemy: UIView) -> Bool {
-        // DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-        if let airplanePresentedFrame = airplaneView.layer.presentation()?.frame,
-           let enemyFrame = enemy.layer.presentation()?.frame {
-            let airplaneX = airplanePresentedFrame.origin.x
-            let enemyX = enemyFrame.origin.x
-            let airplaneWidth = airplanePresentedFrame.size.width
-            
-            if airplaneX < enemyX + Constants.smallImageSize &&
-                airplaneX + airplaneWidth > enemyX &&
-                airplanePresentedFrame.minY - enemyFrame.maxY < 10 {
-
-                
-                return true
-                //setAirplaneFrame()
-            }
-//            if (airplaneX < 70 && view.frame.width - airplaneX - airplaneWidth < 70 ) {
-//
-//                return true
-//                //setAirplaneFrame()
-//            }
-       }
-        return false
-    }
-    
-    
-    private func createDisplayLink() {
-        let displayLink = CADisplayLink(target: self, selector: #selector(step))
-        displayLink.add(to: .current, forMode: .default)
-    }
-    
-    @objc private func step(displayLink: CADisplayLink) {
-        
-        enemies.forEach { enemy in
-            
-            if checkCollision(enemy: enemy) {
-                enemyAnimator?.stopAnimation(true)
-                enemyAnimator = nil
-                enemy.removeFromSuperview()
-                enemies.removeAll(where: { $0 === enemy })
-                
-                cloudAnimator?.stopAnimation(true)
-                cloudAnimator = nil
-                clouds.forEach { $0.removeFromSuperview() }
-                clouds.removeAll()
-                
-                
-                stormAnimator?.stopAnimation(true)
-                stormAnimator = nil
-                storms.forEach { $0.removeFromSuperview() }
-                storms.removeAll()
-                
-                
-            }
-            //alert()
-            //setAirplaneFrame()
-        }
-        
-    }
-    
-    //MARK:  Alert
-    private func alert() {
-        gameTimer?.invalidate()
-        
-        let alert = UIAlertController(
-            title: "Игра окончена.\nВы набрали \(scores) очков",
-            message: "",
-            preferredStyle: .alert
-        )
-        
-        alert.addAction(
-            UIAlertAction(
-                title: "Начать заново",
-                style: .default,
-                handler: { [weak self] _ in
-                    //self?.restartGame()
-                }
-            )
-        )
-        
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
-    
-    private func startGame() {
-        callObstacle()
-        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGame), userInfo: nil, repeats: true)
-    }
-
-    @objc func updateGame() {
-        scores += 1
-        updateScoreLabel()
-        
-    }
-    
-    func updateScoreLabel() {
-        scoresLabel.text = "Очков: \(scores)"
-    }
-    
-    private func restartGame() {
-        GameManager.shared.reportCollision(record: Record(scores: scores))
-        scores = 0
-        updateScoreLabel()
-        startGame()
-    }
-    
-}
-
-fileprivate enum Constants {
-    static let moveToSide = 40.0
-    static let bigImageSize = 50.0
-    static let smallImageSize = 40.0
-    static let ySpawn = -50.0
-}
-
-fileprivate enum GameImageNames {
-    static let enemy = "plane-2"
-    static let cloud = "cloud"
-    static let storm = "storm-2"
 }
 
 

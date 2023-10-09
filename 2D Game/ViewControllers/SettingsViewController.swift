@@ -118,8 +118,3 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
-
-
-
-
