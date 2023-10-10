@@ -26,10 +26,14 @@ final class GameViewController: UIViewController {
     
     private var isGameOver = false
     
+    private let gameManager = GameManager.shared
+    private let storageManager = StorageManager.shared
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        airplaneView.image = gameManager.fetchImagePlane()
         setupGradient()
         setAirplaneFrame()
         createDisplayLink()
@@ -103,7 +107,13 @@ final class GameViewController: UIViewController {
     
     //MARK:  Alert
     private func alert() {
-        GameManager.shared.reportCollision(record: Record(scores: scores))
+        var existingRecords = storageManager.loadRecords() ?? []
+        
+        gameManager.reportCollision(record: Record(scores: scores))
+        existingRecords.append(Record(scores: scores))
+        
+        storageManager.saveRecords(existingRecords)
+        
         isGameOver = true
         let alert = UIAlertController(
             title: "Игра окончена.\nВы набрали \(scores) очков",
@@ -176,6 +186,7 @@ private enum GameImageNames {
     static let enemy = "enemy"
     static let cloud = "cloud"
     static let storm = "storm-2"
+    static let plane = "plane"
 }
 
 extension GameViewController {

@@ -252,7 +252,7 @@
                                             <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="chooseJetPlane:" destination="eAT-sH-6tn" eventType="touchUpInside" id="DRp-B0-W7I"/>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="9yL-lG-rsb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgo-mO-qX0">
@@ -263,7 +263,7 @@
                                             <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="chooseAirbus:" destination="eAT-sH-6tn" eventType="touchUpInside" id="xcN-XS-9bv"/>
+                                            <action selector="chooseAirbus" destination="eAT-sH-6tn" eventType="touchUpInside" id="XsV-mT-6az"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOv-4T-iOD">
@@ -274,7 +274,7 @@
                                             <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="chooseGreenPlane:" destination="eAT-sH-6tn" eventType="touchUpInside" id="6qQ-nY-rlE"/>
+                                            <action selector="chooseGreenPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="dpb-tZ-dGI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -286,6 +286,9 @@
                                     <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="26"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="chosePlaneTapped" destination="eAT-sH-6tn" eventType="touchUpInside" id="hP6-qP-KXC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lTH-gs-VQP"/>

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7857CD6B2AD1EF4A003E12AD /* AnimateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7857CD6A2AD1EF4A003E12AD /* AnimateObject.swift */; };
+		7821E27C2AD5AA3D00AFD577 /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7821E27B2AD5AA3D00AFD577 /* Extension + String.swift */; };
 		786FF67A2AD4512D00A961BF /* ChoosePlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FF6792AD4512D00A961BF /* ChoosePlaneViewController.swift */; };
 		78ABF5182AC08FB400F9CFE1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABF5172AC08FB400F9CFE1 /* Record.swift */; };
 		78ABF51B2AC0912700F9CFE1 /* Extension + UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */; };
@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7857CD6A2AD1EF4A003E12AD /* AnimateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateObject.swift; sourceTree = "<group>"; };
+		7821E27B2AD5AA3D00AFD577 /* Extension + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
 		786FF6792AD4512D00A961BF /* ChoosePlaneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePlaneViewController.swift; sourceTree = "<group>"; };
 		78ABF5172AC08FB400F9CFE1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableViewController.swift"; sourceTree = "<group>"; };
@@ -63,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				78ABF5172AC08FB400F9CFE1 /* Record.swift */,
-				7857CD6A2AD1EF4A003E12AD /* AnimateObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -142,6 +141,7 @@
 			children = (
 				78C576972ABCB340004274C4 /* Extension + UIViewController.swift */,
 				78ABF51A2AC0912700F9CFE1 /* Extension + UITableViewController.swift */,
+				7821E27B2AD5AA3D00AFD577 /* Extension + String.swift */,
 				78C576992ABCB3BA004274C4 /* Extension + UIView.swift */,
 			);
 			path = Extensions;
@@ -229,10 +229,10 @@
 			files = (
 				78C576902ABCA54F004274C4 /* GameViewController.swift in Sources */,
 				78FBBEA12ACEC4490004D80D /* GameManager.swift in Sources */,
+				7821E27C2AD5AA3D00AFD577 /* Extension + String.swift in Sources */,
 				78ABF51B2AC0912700F9CFE1 /* Extension + UITableViewController.swift in Sources */,
 				78ABF51D2AC0A03B00F9CFE1 /* StorageManager.swift in Sources */,
 				786FF67A2AD4512D00A961BF /* ChoosePlaneViewController.swift in Sources */,
-				7857CD6B2AD1EF4A003E12AD /* AnimateObject.swift in Sources */,
 				78C5767E2ABCA10B004274C4 /* MainViewController.swift in Sources */,
 				78ABF5182AC08FB400F9CFE1 /* Record.swift in Sources */,
 				78C576982ABCB340004274C4 /* Extension + UIViewController.swift in Sources */,

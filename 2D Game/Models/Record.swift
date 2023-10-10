@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Record  {
+struct Record: Codable, Comparable {
+    static func < (lhs: Record, rhs: Record) -> Bool {
+        return lhs.scores > rhs.scores
+    }
+    
     let scores: Int
 }
 

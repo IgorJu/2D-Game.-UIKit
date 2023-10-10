@@ -26,7 +26,7 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
     }
     
     //MARK: private properties
-   private let storageManager = StorageManager.shared
+    private let storageManager = StorageManager.shared
     
     //MARK: - View life cycle
     
@@ -34,10 +34,7 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradient()
-        storageManager.loadUserName(userNameLabel)
-        storageManager.loadUserPhoto(imageView: userPhotoImageView)
-        
-        checkPhoto()
+        loadData()
     }
     
     //MARK: - @IBActions
@@ -99,6 +96,12 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
         present(imagePicker, animated: true, completion: nil)
     }
     
+    private func loadData() {
+        storageManager.loadUserName(userNameLabel)
+        guard let imageName = storageManager.loadString(key: .avatar) else { return }
+        userPhotoImageView.image = storageManager.loadImage(name: imageName)
+        checkPhoto()
+    }
     
     //MARK: - Picker Delegate
     
@@ -109,12 +112,14 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
         
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.userPhotoImageView.image = selectedImage
-            storageManager.saveImageToUserDefaults(image: selectedImage)
+            guard let imageName = storageManager.saveImage(selectedImage) else { return }
+            storageManager.saveString(imageName, key: .avatar)
+            
         }
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 }
