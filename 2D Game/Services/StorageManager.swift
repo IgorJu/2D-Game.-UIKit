@@ -71,6 +71,19 @@ final class StorageManager {
                 return records
     }
     
+    //MARK: - Работа со скоростью игры
+    func saveDouble(_ number: Double, key: String) {
+        UserDefaults.standard.set(number, forKey: key)
+    }
+    
+    func loadDouble(key: String) -> Double? {
+        guard let number = UserDefaults.standard.object(forKey: key) as? Double else { return nil }
+        return number
+    }
+
+    
+    
+    
     private init() {}
 }
 

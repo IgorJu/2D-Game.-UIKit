@@ -19,32 +19,32 @@ class ChoosePlaneViewController: UIViewController {
     //MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        planeImageView.image = UIImage(named: storageManager.loadString(key: .plane) ?? "enemy")
+        planeImageView.image = UIImage(named: storageManager.loadString(key: .plane) ?? "plane")
         setupGradient()
     }
     
     //MARK: - flow
 
     @IBAction func chooseJetPlane() {
-        planeImageView.image = UIImage(named: PlaneImageNames.jetPlane)
-        gameManager.changePlaneImage(imageName: PlaneImageNames.jetPlane)
-        storageManager.saveString(PlaneImageNames.jetPlane, key: .plane)
+        changePlaneImage(imageName: PlaneImageNames.jetPlane)
     }
     
     @IBAction func chooseAirbus() {
-        planeImageView.image = UIImage(named: PlaneImageNames.airbus)
-        gameManager.changePlaneImage(imageName: PlaneImageNames.airbus)
-        storageManager.saveString(PlaneImageNames.airbus, key: .plane)
+        changePlaneImage(imageName: PlaneImageNames.airbus)
     }
     
     @IBAction func chooseGreenPlane() {
-        planeImageView.image =  UIImage(named: PlaneImageNames.greenPlane)
-         gameManager.changePlaneImage(imageName: PlaneImageNames.greenPlane)
-        storageManager.saveString(PlaneImageNames.greenPlane, key: .plane)
+        changePlaneImage(imageName: PlaneImageNames.greenPlane)
     }
     
     @IBAction func chosePlaneTapped() {
         dismiss(animated: true)
+    }
+    
+    private func changePlaneImage(imageName: String) {
+        planeImageView.image = UIImage(named: imageName)
+        gameManager.changePlaneImage(imageName: imageName)
+        storageManager.saveString(imageName, key: .plane)
     }
 }
 

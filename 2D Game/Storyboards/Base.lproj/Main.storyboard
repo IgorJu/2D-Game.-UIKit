@@ -184,10 +184,13 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRQ-Dj-dTI">
                                                 <rect key="frame" x="0.0" y="73" width="290" height="53.5"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="gray" title="Выбор препятствия">
+                                                <buttonConfiguration key="configuration" style="gray" title="Выбор врага">
                                                     <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
                                                     <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="TMa-TT-fOr" kind="presentation" id="HAJ-tS-McP"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLT-Xg-2l5">
                                                 <rect key="frame" x="0.0" y="146.5" width="290" height="53.5"/>
@@ -196,6 +199,9 @@
                                                     <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
                                                     <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="c4a-wQ-CUP" kind="presentation" id="FPt-dU-VCP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -225,6 +231,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="48D-bs-LuW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="293" y="767"/>
+        </scene>
+        <!--Choose Speed View Controller-->
+        <scene sceneID="pzZ-Rp-kH4">
+            <objects>
+                <viewController id="c4a-wQ-CUP" customClass="ChooseSpeedViewController" customModule="_D_Game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v88-EO-lyW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkW-DW-6T1">
+                                <rect key="frame" x="30" y="484.5" width="260" height="43"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Выбрать">
+                                    <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="25"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseSpeedTapped" destination="c4a-wQ-CUP" eventType="touchUpInside" id="Sem-BR-umB"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speed" translatesAutoresizingMaskIntoConstraints="NO" id="9sa-CL-pdI">
+                                <rect key="frame" x="120" y="150" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Wwf-Fb-3Ha"/>
+                                    <constraint firstAttribute="height" constant="80" id="knh-Gp-pWa"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="p9N-4e-aJf">
+                                <rect key="frame" x="30" y="282" width="260" height="152.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-Ml-7Ra">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Медленная">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="fC3-yZ-LNR"/>
+                                            <action selector="slowSpeedTapped" destination="c4a-wQ-CUP" eventType="touchUpInside" id="G4O-yH-TJG"/>
+                                            <action selector="slowSpeedTapped" destination="UW3-cA-4yg" eventType="touchUpInside" id="s64-Uu-rHS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVJ-TC-pgl">
+                                        <rect key="frame" x="0.0" y="57.5" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Средняя">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="vf0-TE-zlI"/>
+                                            <action selector="mediumSpeedTapped" destination="UW3-cA-4yg" eventType="touchUpInside" id="Ajg-ii-4zV"/>
+                                            <action selector="mediumSpeedTapped" destination="c4a-wQ-CUP" eventType="touchUpInside" id="zqW-eC-8iq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpv-LS-y9K">
+                                        <rect key="frame" x="0.0" y="115" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Быстрая">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="hhq-NK-JSz"/>
+                                            <action selector="fastSpeedTapped" destination="UW3-cA-4yg" eventType="touchUpInside" id="Bar-Yp-6PS"/>
+                                            <action selector="fastSpeedTapped" destination="c4a-wQ-CUP" eventType="touchUpInside" id="SoG-CR-gsr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выбор скорости игры" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlE-WC-Ptu">
+                                <rect key="frame" x="28.5" y="58" width="263" height="28"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="imu-dq-9RX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rkW-DW-6T1" firstAttribute="top" secondItem="p9N-4e-aJf" secondAttribute="bottom" constant="50" id="CC9-GI-x7D"/>
+                            <constraint firstItem="imu-dq-9RX" firstAttribute="trailing" secondItem="rkW-DW-6T1" secondAttribute="trailing" constant="30" id="FdC-4X-FSJ"/>
+                            <constraint firstItem="p9N-4e-aJf" firstAttribute="top" secondItem="9sa-CL-pdI" secondAttribute="bottom" constant="52" id="GnH-XX-Bwp"/>
+                            <constraint firstItem="9sa-CL-pdI" firstAttribute="centerX" secondItem="v88-EO-lyW" secondAttribute="centerX" id="Mt7-dn-C4t"/>
+                            <constraint firstItem="9sa-CL-pdI" firstAttribute="top" secondItem="vlE-WC-Ptu" secondAttribute="bottom" constant="64" id="VmT-z4-95z"/>
+                            <constraint firstItem="p9N-4e-aJf" firstAttribute="leading" secondItem="imu-dq-9RX" secondAttribute="leading" constant="30" id="YcS-af-C22"/>
+                            <constraint firstItem="imu-dq-9RX" firstAttribute="bottom" secondItem="rkW-DW-6T1" secondAttribute="bottom" constant="20.5" id="eeF-D2-9Dh"/>
+                            <constraint firstItem="rkW-DW-6T1" firstAttribute="leading" secondItem="imu-dq-9RX" secondAttribute="leading" constant="30" id="fJe-PI-8Ca"/>
+                            <constraint firstItem="vlE-WC-Ptu" firstAttribute="centerX" secondItem="v88-EO-lyW" secondAttribute="centerX" id="lqs-DG-zuP"/>
+                            <constraint firstItem="imu-dq-9RX" firstAttribute="trailing" secondItem="p9N-4e-aJf" secondAttribute="trailing" constant="30" id="yOl-OM-h2g"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hfd-Qg-leY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="UW3-cA-4yg" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="292.5" y="1571.8309859154929"/>
         </scene>
         <!--Choose Plane View Controller-->
         <scene sceneID="NHI-v2-frS">
@@ -313,6 +417,96 @@
             </objects>
             <point key="canvasLocation" x="1766" y="437"/>
         </scene>
+        <!--Choose Enemy View Controller-->
+        <scene sceneID="wIP-7h-VW9">
+            <objects>
+                <viewController id="TMa-TT-fOr" customClass="ChooseEnemyViewController" customModule="_D_Game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aEF-GA-Cu6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wIe-uc-nC1">
+                                <rect key="frame" x="30" y="281" width="260" height="152.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCc-Dm-mXn">
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Космический корабль">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="CMq-c6-zPl"/>
+                                            <action selector="spaceShipTapped" destination="TMa-TT-fOr" eventType="touchUpInside" id="5zO-gd-5Mu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkU-M6-P5Z">
+                                        <rect key="frame" x="0.0" y="57.5" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Военный истребитель">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="armyJetTapped" destination="TMa-TT-fOr" eventType="touchUpInside" id="ipC-r7-qEl"/>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="ZUQ-Wp-ULX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4k-BQ-ZLS">
+                                        <rect key="frame" x="0.0" y="115" width="260" height="37.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Желтый самолет">
+                                            <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="20"/>
+                                            <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="chooseJetPlane" destination="eAT-sH-6tn" eventType="touchUpInside" id="qxh-1S-sYr"/>
+                                            <action selector="yellowPlaneTapped" destination="TMa-TT-fOr" eventType="touchUpInside" id="zs0-vp-Q0y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spaceship" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-bL-ZU4">
+                                <rect key="frame" x="60" y="11" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="grW-FF-Gwl"/>
+                                    <constraint firstAttribute="width" constant="200" id="zms-5j-oLv"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tom-3Q-hSf">
+                                <rect key="frame" x="30" y="483.5" width="260" height="44.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Выбрать врага">
+                                    <fontDescription key="titleFontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="26"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseEnemyTapped" destination="TMa-TT-fOr" eventType="touchUpInside" id="NEN-gv-AMR"/>
+                                    <action selector="chosePlaneTapped" destination="eAT-sH-6tn" eventType="touchUpInside" id="Ewn-ko-qH0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iXI-kM-hXD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iXI-kM-hXD" firstAttribute="trailing" secondItem="Tom-3Q-hSf" secondAttribute="trailing" constant="30" id="7G3-G7-HTK"/>
+                            <constraint firstItem="iXI-kM-hXD" firstAttribute="trailing" secondItem="wIe-uc-nC1" secondAttribute="trailing" constant="30" id="8IU-4x-ELG"/>
+                            <constraint firstItem="Tom-3Q-hSf" firstAttribute="top" secondItem="wIe-uc-nC1" secondAttribute="bottom" constant="50" id="DWx-s5-bht"/>
+                            <constraint firstItem="U6b-bL-ZU4" firstAttribute="centerX" secondItem="aEF-GA-Cu6" secondAttribute="centerX" id="KuH-pQ-B5j"/>
+                            <constraint firstItem="iXI-kM-hXD" firstAttribute="bottom" secondItem="Tom-3Q-hSf" secondAttribute="bottom" constant="20" id="aIw-Gr-QhV"/>
+                            <constraint firstItem="Tom-3Q-hSf" firstAttribute="leading" secondItem="iXI-kM-hXD" secondAttribute="leading" constant="30" id="gBL-AG-Psy"/>
+                            <constraint firstItem="wIe-uc-nC1" firstAttribute="leading" secondItem="iXI-kM-hXD" secondAttribute="leading" constant="30" id="oT1-RO-3S5"/>
+                            <constraint firstItem="wIe-uc-nC1" firstAttribute="top" secondItem="U6b-bL-ZU4" secondAttribute="bottom" constant="70" id="odQ-NP-EqE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="enemyImageView" destination="U6b-bL-ZU4" id="Xf1-LB-gcb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07B-L6-kJf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755" y="1170.4225352112676"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="N6c-rw-ddU">
             <objects>
@@ -360,7 +554,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="eB7-3a-4pI">
-                                <rect key="frame" x="60" y="76" width="15" height="412"/>
+                                <rect key="frame" x="30" y="76" width="15" height="412"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flash" translatesAutoresizingMaskIntoConstraints="NO" id="vh2-Fy-3cP">
                                         <rect key="frame" x="0.0" y="0.0" width="15" height="68"/>
@@ -390,7 +584,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="kCI-86-aDt">
-                                <rect key="frame" x="245" y="76" width="15" height="412"/>
+                                <rect key="frame" x="275" y="76" width="15" height="412"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flash" translatesAutoresizingMaskIntoConstraints="NO" id="3ft-42-dw5">
                                         <rect key="frame" x="0.0" y="0.0" width="15" height="68"/>
@@ -431,9 +625,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="eB7-3a-4pI" secondAttribute="bottom" constant="80" id="6sR-7l-5Qu"/>
-                            <constraint firstItem="tHB-Ha-C4y" firstAttribute="trailing" secondItem="kCI-86-aDt" secondAttribute="trailing" constant="60" id="7GM-or-bRL"/>
+                            <constraint firstItem="tHB-Ha-C4y" firstAttribute="trailing" secondItem="kCI-86-aDt" secondAttribute="trailing" constant="30" id="7GM-or-bRL"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="ftX-XS-LpH" secondAttribute="bottom" constant="18.5" id="8Sp-UV-afr"/>
-                            <constraint firstItem="eB7-3a-4pI" firstAttribute="leading" secondItem="tHB-Ha-C4y" secondAttribute="leading" constant="60" id="Dnb-c1-Geq"/>
+                            <constraint firstItem="eB7-3a-4pI" firstAttribute="leading" secondItem="tHB-Ha-C4y" secondAttribute="leading" constant="30" id="Dnb-c1-Geq"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="tHB-Ha-C4y" secondAttribute="top" constant="32" id="Fjd-lf-ZJO"/>
                             <constraint firstItem="kCI-86-aDt" firstAttribute="top" secondItem="eB7-3a-4pI" secondAttribute="top" id="LNT-WA-nZW"/>
                             <constraint firstItem="5dC-id-gKn" firstAttribute="centerX" secondItem="Svw-dD-5JO" secondAttribute="centerX" id="Msi-yv-q0D"/>
@@ -479,6 +673,8 @@
         <image name="jetPlane" width="512" height="512"/>
         <image name="pencil.line" catalog="system" width="128" height="98"/>
         <image name="plane" width="512" height="512"/>
+        <image name="spaceship" width="512" height="512"/>
+        <image name="speed" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

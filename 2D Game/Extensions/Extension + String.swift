@@ -12,5 +12,6 @@ extension String {
     static let user = "username"
     static let records = "records"
     static let plane = "plane"
+    static let speed = "speed"
     static let enemy = "enemy"
 }
