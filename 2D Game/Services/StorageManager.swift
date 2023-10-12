@@ -13,15 +13,15 @@ final class StorageManager {
     static let shared = StorageManager()
     
     //MARK: - Работа с именем
-    func saveUser(name: String) {
-        UserDefaults.standard.set(name, forKey: .user)
+    func saveUser(name: String, key: String) {
+        UserDefaults.standard.set(name, forKey: key)
     }
     
-    func loadUserName(_ name: UILabel) {
-        if let username = UserDefaults.standard.string(forKey: .user) {
-            name.text = username
+    func loadOldUserName() -> String? {
+        guard let userName = UserDefaults.standard.object(forKey: .oldName) as? String else { return nil }
+        return userName
         }
-    }
+    
     //MARK: - Работа с именем картинки
     func saveString(_ string: String, key: String) {
         UserDefaults.standard.set(string, forKey: key)
@@ -62,14 +62,15 @@ final class StorageManager {
     
     //MARK: - Работа с рекордами пользователя
     
-    func saveRecords(_ records: [Record]) {
+    func saveRecords(_ records: [User]) {
         UserDefaults.standard.set(encodable: records, forKey: .records)
     }
     
-    func loadRecords() -> [Record]? {
-        guard let records = UserDefaults.standard.object([Record].self, forKey: .records) else { return []}
-                return records
+    func loadRecords() -> [User]? {
+        guard let users = UserDefaults.standard.object([User].self, forKey: .records) else { return []}
+                return users
     }
+    
     
     //MARK: - Работа со скоростью игры
     func saveDouble(_ number: Double, key: String) {

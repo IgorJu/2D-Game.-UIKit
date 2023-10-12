@@ -75,7 +75,7 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
                 handler: { (_) in
                     if let username = alert.textFields?.first?.text {
                         self.userNameLabel.text = username
-                        self.storageManager.saveUser(name: username)
+                        self.storageManager.saveString(username, key: .user)
                     }
                 }
             )
@@ -97,7 +97,7 @@ final class SettingsViewController: UIViewController, UIImagePickerControllerDel
     }
     
     private func loadData() {
-        storageManager.loadUserName(userNameLabel)
+        userNameLabel.text = storageManager.loadString(key: .user)
         guard let imageName = storageManager.loadString(key: .avatar) else { return }
         userPhotoImageView.image = storageManager.loadImage(name: imageName)
         checkPhoto()

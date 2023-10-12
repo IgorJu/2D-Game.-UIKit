@@ -83,7 +83,6 @@ final class GameViewController: UIViewController {
                 || planeX < 30
                 || view.frame.width - planeX - presentedFrame.width < 30 {
                 checkCollission = true
-                
             }
         }
         return checkCollission
@@ -118,7 +117,11 @@ final class GameViewController: UIViewController {
         var existingRecords = storageManager.loadRecords() ?? []
         
         gameManager.reportCollision(record: Record(scores: scores))
-        existingRecords.append(Record(scores: scores))
+        existingRecords.append(User(
+            name: storageManager.loadString(key: .user) ?? "",
+            record: Record(scores: scores),
+            imageName: storageManager.loadString(key: .avatar) ?? ""
+        ))
         
         storageManager.saveRecords(existingRecords)
         

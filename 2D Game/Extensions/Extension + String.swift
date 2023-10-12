@@ -14,4 +14,5 @@ extension String {
     static let plane = "plane"
     static let speed = "speed"
     static let enemy = "enemy"
+    static let oldName = "oldName"
 }

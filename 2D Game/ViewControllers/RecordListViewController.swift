@@ -7,32 +7,56 @@
 
 import UIKit
 
-final class RecordListViewController: UITableViewController {
+final class RecordListViewController: UIViewController {
     
-    private lazy var records: [Record] = GameManager.shared.fetchRecords()
+    @IBOutlet var tableView: UITableView!
+    
+    private let storageManager = StorageManager.shared
+    
+    private lazy var records: [User] = storageManager.loadRecords() ?? []
     
     override func viewDidLoad() {
-        records = StorageManager.shared.loadRecords() ?? []
         super.viewDidLoad()
-        setupGradientTable()
+        
+        records = StorageManager.shared.loadRecords() ?? []
+        tableView.superview?.addVerticalGradientLayer(
+            topColor: ConstantColors.endColor,
+            bottomColor: ConstantColors.startColor)
+        
+        tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: RecordTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = .leastNonzeroMagnitude
+        tableView.backgroundColor = .clear
+        tableView.dataSource = self
+        tableView.delegate = self
     }
+}
+
+
+extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         records.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "Record")
-        var content = cell.defaultContentConfiguration()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.identifier, for: indexPath) as? RecordTableViewCell else { return UITableViewCell() }
         
-        let record = records.sorted()[indexPath.row]
+        //let record = records.sorted()[indexPath.row]
         
-        content.text = String(indexPath.row + 1) +  ". "  + String(record.scores) + " очков"
-        content.textProperties.font = UIFont(name: "HelveticaNeue" , size: 18) ?? UIFont()
-        content.textProperties.color = .white
-        cell.contentConfiguration = content
-        cell.backgroundConfiguration = .clear()
+        let user = records[indexPath.row]
+        
+        cell.configure(
+            with: user.record.scores,
+            userName: user.name,
+            userImage: storageManager.loadImage(name: user.imageName) ?? UIImage()
+        )
+        cell.backgroundColor = .clear
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

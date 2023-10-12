@@ -39,7 +39,7 @@
                                             <color key="baseForegroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="P84-zm-dES" kind="show" id="3eN-bU-OHe"/>
+                                            <segue destination="qkr-xA-Izy" kind="show" id="4zf-68-plE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cup-yq-Z5E">
@@ -82,32 +82,35 @@
             </objects>
             <point key="canvasLocation" x="-632" y="-11"/>
         </scene>
-        <!--Таблица рекордов-->
-        <scene sceneID="0CF-qi-C9X">
+        <!--Record List View Controller-->
+        <scene sceneID="p5Y-J1-jcf">
             <objects>
-                <tableViewController id="P84-zm-dES" customClass="RecordListViewController" customModule="_D_Game" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="iMM-sF-94p">
+                <viewController id="qkr-xA-Izy" customClass="RecordListViewController" customModule="_D_Game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H83-I1-Dsz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="nhB-QB-69G">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ug5-nz-yRZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Record" id="COR-GF-hqp">
-                                <rect key="frame" x="0.0" y="50" width="320" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="COR-GF-hqp" id="MhB-a0-tRi">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="P84-zm-dES" id="3Uc-z7-1Qg"/>
-                            <outlet property="delegate" destination="P84-zm-dES" id="V0p-yR-fSV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Таблица рекордов" id="XNK-f6-Bcf"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RKQ-Tu-Vku" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="Ug5-nz-yRZ" firstAttribute="bottom" secondItem="nhB-QB-69G" secondAttribute="bottom" id="JSh-yj-pnE"/>
+                            <constraint firstItem="nhB-QB-69G" firstAttribute="leading" secondItem="Ug5-nz-yRZ" secondAttribute="leading" id="NIF-hX-DAB"/>
+                            <constraint firstItem="nhB-QB-69G" firstAttribute="top" secondItem="Ug5-nz-yRZ" secondAttribute="top" id="W9k-f6-VSO"/>
+                            <constraint firstItem="Ug5-nz-yRZ" firstAttribute="trailing" secondItem="nhB-QB-69G" secondAttribute="trailing" id="wrH-72-fke"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LWV-fd-L7O"/>
+                    <connections>
+                        <outlet property="tableView" destination="nhB-QB-69G" id="mHZ-mq-2fW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6By-io-EOo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="293" y="-12"/>
         </scene>
