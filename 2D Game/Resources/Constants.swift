@@ -14,7 +14,8 @@ enum Constants {
     static let smallImageSize = 40.0
     static let ySpawn = -50.0
     static let enemyDuration = 3.0
-    static let objectDuration = 10.0
+    static let objectDuration = 6.0
+    static let heightForRow = 60.0
 }
 
 enum GameImageNames {

@@ -8,51 +8,71 @@
 import UIKit
 
 final class RecordListViewController: UIViewController {
+    //MARK: - Properties
     
     @IBOutlet var tableView: UITableView!
     
     private let storageManager = StorageManager.shared
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
     
-    private lazy var records: [User] = storageManager.loadRecords() ?? []
+    private var userRecords: [User] = []
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setActivityIndicator()
+        fetchUserRecords()
         
-        records = StorageManager.shared.loadRecords() ?? []
         tableView.superview?.addVerticalGradientLayer(
             topColor: ConstantColors.endColor,
-            bottomColor: ConstantColors.startColor)
+            bottomColor: ConstantColors.startColor
+        )
         
-        tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: RecordTableViewCell.identifier)
-        tableView.rowHeight = UITableView.automaticDimension
-        //tableView.estimatedRowHeight = .leastNonzeroMagnitude
+        tableView.register(
+            RecordTableViewCell.self,
+            forCellReuseIdentifier: RecordTableViewCell.identifier
+        )
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
     }
+    
+    //MARK: - Flow
+    private func setActivityIndicator() {
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+    }
+    
+    private func fetchUserRecords() {
+        DispatchQueue.global().async {
+            let records = GameManager.shared.fetchUsers()
+            
+            DispatchQueue.main.async {
+                self.userRecords = records
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+
+            }
+        }
+    }
 }
 
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        records.count
+        userRecords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.identifier, for: indexPath) as? RecordTableViewCell else { return UITableViewCell() }
         
-        //let record = records.sorted()[indexPath.row]
+        userRecords.sort { $0.record.scores > $1.record.scores }
+        let user = userRecords[indexPath.row]
         
-        records.sort { $0.record.scores < $1.record.scores }
-        
-        let user = records[indexPath.row]
-        
-        cell.configure(
-            with: user.record.scores,
-            userName: user.name,
-            userImage: storageManager.loadImage(name: user.imageName) ?? UIImage()
-        )
+        cell.configure(user: user)
         cell.backgroundColor = .clear
         
         return cell
@@ -61,4 +81,10 @@ extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        Constants.heightForRow
+    }
 }
+
+

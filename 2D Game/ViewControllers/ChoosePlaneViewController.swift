@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChoosePlaneViewController: UIViewController {
+final class ChoosePlaneViewController: UIViewController {
     
     //MARK: - Properties
     
@@ -17,6 +17,7 @@ class ChoosePlaneViewController: UIViewController {
     private let storageManager = StorageManager.shared
     
     //MARK: - lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         planeImageView.image = UIImage(named: storageManager.loadString(key: .plane) ?? "plane")
@@ -48,6 +49,7 @@ class ChoosePlaneViewController: UIViewController {
     }
 }
 
+//MARK: - Enum plane image names
 
 private enum PlaneImageNames {
     static let airbus = "plane"

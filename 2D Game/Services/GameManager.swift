@@ -16,10 +16,14 @@ class GameManager {
     
     private var speedGame = Constants.enemyDuration
     
+    private var users: [User] = []
+    
+    private let storageManager = StorageManager.shared
+    
     static let shared = GameManager()
     
     private init() { }
-
+    
     func reportCollision(record: Record) {
         records.append(record)
     }
@@ -32,11 +36,11 @@ class GameManager {
     
     func changePlaneImage(imageName: String) {
         userPlane = UIImage(named: imageName) ?? UIImage()
-        StorageManager.shared.saveString(imageName, key: .plane)
+        storageManager.saveString(imageName, key: .plane)
     }
-
+    
     func fetchPlaneImage() -> UIImage {
-        userPlane = UIImage(named: StorageManager.shared.loadString(key: .plane) ?? "plane") ?? UIImage()
+        userPlane = UIImage(named: storageManager.loadString(key: .plane) ?? "plane") ?? UIImage()
         return userPlane
     }
     
@@ -44,27 +48,30 @@ class GameManager {
     
     func changeEnemyImage(imageName: String) {
         enemyPlane = UIImage(named: imageName) ?? UIImage()
-        StorageManager.shared.saveString(imageName, key: .enemy)
+        storageManager.saveString(imageName, key: .enemy)
     }
     
     func fetchEnemyImage() -> UIImage {
-        enemyPlane = UIImage(named: StorageManager.shared.loadString(key: .enemy) ?? "aircraft") ?? UIImage()
+        enemyPlane = UIImage(named: storageManager.loadString(key: .enemy) ?? "aircraft") ?? UIImage()
         return enemyPlane
     }
-    
     
     //MARK: - speed game methods
     
     func changeSpeed(_ speed: Double) {
         speedGame = speed
-        StorageManager.shared.saveDouble(speed, key: .speed)
+        storageManager.saveDouble(speed, key: .speed)
     }
-
+    
     
     func fetchSpeed() -> Double {
-        speedGame = StorageManager.shared.loadDouble(key: .speed) ?? Constants.enemyDuration
+        speedGame = storageManager.loadDouble(key: .speed) ?? Constants.enemyDuration
         return speedGame
     }
     
+    func fetchUsers() -> [User] {
+        self.users = self.storageManager.loadRecords() ?? []
+        return users
+    }
     
 }

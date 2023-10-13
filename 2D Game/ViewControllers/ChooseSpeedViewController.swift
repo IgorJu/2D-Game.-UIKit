@@ -7,31 +7,34 @@
 
 import UIKit
 
-class ChooseSpeedViewController: UIViewController {
+final class ChooseSpeedViewController: UIViewController {
 
+    //MARK: - Properties
+    
     private let gameManager = GameManager.shared
     private let storageManager = StorageManager.shared
     
     private var speedGame = 0.0
     
+    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradient()
         speedGame = gameManager.fetchSpeed()
     }
 
+    //MARK: - Flow
     @IBAction func slowSpeedTapped() {
-        changeSpeed(SpeedGame.slow)
+        changeSpeed(SpeedOfGame.slow)
     }
     
-    
     @IBAction func mediumSpeedTapped() {
-        changeSpeed(SpeedGame.medium)
-        
+        changeSpeed(SpeedOfGame.medium)
     }
     
     @IBAction func fastSpeedTapped() {
-        changeSpeed(SpeedGame.fast)
+        changeSpeed(SpeedOfGame.fast)
     }
     
     @IBAction func chooseSpeedTapped() {
@@ -45,7 +48,8 @@ class ChooseSpeedViewController: UIViewController {
     }
 }
 
-private enum SpeedGame {
+//MARK: - Enum speedGame
+private enum SpeedOfGame {
     static let slow = 8.0
     static let medium = 5.0
     static let fast = 2.0

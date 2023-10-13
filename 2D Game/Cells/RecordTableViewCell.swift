@@ -9,6 +9,8 @@ import UIKit
 
 final class RecordTableViewCell: UITableViewCell {
     
+    //MARK: - Properties
+    
     static var identifier: String { "\(Self.self)" }
     
     private let recordLabel: UILabel = {
@@ -29,28 +31,50 @@ final class RecordTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let avatarIV = UIImageView()
+    private let avatarIV: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        avatarIV.translatesAutoresizingMaskIntoConstraints = false
-        avatarIV.contentMode = .scaleAspectFit
-        //avatarIV.image = UIImage(systemName: "person")
-        //avatarIV.frame = CGRect(x: 20, y: 20, width: 50, height: 50)
-        contentView.addSubview(recordLabel)
-        contentView.addSubview(userNameLabel)
-        contentView.addSubview(avatarIV)
+    //MARK: - Override Methods
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubviews()
         setConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        avatarIV.layer.cornerRadius = avatarIV.frame.height / 2
+        avatarIV.clipsToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recordLabel.text = nil
+        userNameLabel.text = nil
+        avatarIV.image = nil
+    }
+
+    
+    //MARK: - Flow
+    private func addSubviews() {
+        contentView.addSubview(recordLabel)
+        contentView.addSubview(userNameLabel)
+        contentView.addSubview(avatarIV)
+    }
     
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
             avatarIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            avatarIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            avatarIV.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            //avatarIV.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            avatarIV.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             avatarIV.widthAnchor.constraint(equalToConstant: 40),
             avatarIV.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -64,21 +88,12 @@ final class RecordTableViewCell: UITableViewCell {
             recordLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             recordLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
-        contentView.autoresizingMask = .flexibleHeight
     }
     
-    
-    func configure(with scores: Int, userName: String, userImage: UIImage) {
-        recordLabel.text = String(scores)
-        userNameLabel.text = userName
-        avatarIV.image = userImage
+    func configure(user: User) {
+        recordLabel.text = String(user.record.scores)
+        userNameLabel.text = user.name
+        avatarIV.image = StorageManager.shared.loadImage(name: user.imageName)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        recordLabel.text = nil
-        userNameLabel.text = nil
-        avatarIV.image = nil
-    }
 }

@@ -7,21 +7,23 @@
 
 import UIKit
 
-class ChooseEnemyViewController: UIViewController {
+final class ChooseEnemyViewController: UIViewController {
 
-    
-    
+    //MARK: - Properties
     @IBOutlet var enemyImageView: UIImageView!
     
     private let gameManager = GameManager.shared
     private let storageManager = StorageManager.shared
-
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         enemyImageView.image = gameManager.fetchEnemyImage()
         setupGradient()
     }
+    
+    //MARK: -  Flow
     
     @IBAction func spaceShipTapped() {
         changeEnemyImage(imageName: EnemyImageNames.spaceShip)
@@ -45,10 +47,9 @@ class ChooseEnemyViewController: UIViewController {
         gameManager.changeEnemyImage(imageName: imageName)
         storageManager.saveString(imageName, key: .enemy)
     }
-    
-    
 }
 
+//MARK: enum Enemy image names
 private enum EnemyImageNames {
     static let spaceShip = "spaceship"
     static let armyJet = "aircraft"
