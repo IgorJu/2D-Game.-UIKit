@@ -33,6 +33,8 @@ final class RecordTableViewCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        avatarIV.translatesAutoresizingMaskIntoConstraints = false
+        avatarIV.contentMode = .scaleAspectFit
         //avatarIV.image = UIImage(systemName: "person")
         //avatarIV.frame = CGRect(x: 20, y: 20, width: 50, height: 50)
         contentView.addSubview(recordLabel)
@@ -45,9 +47,9 @@ final class RecordTableViewCell: UITableViewCell {
     private func setConstraints() {
         
         NSLayoutConstraint.activate([
-            avatarIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            avatarIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            avatarIV.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            avatarIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            avatarIV.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            avatarIV.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             //avatarIV.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             avatarIV.widthAnchor.constraint(equalToConstant: 40),
             avatarIV.heightAnchor.constraint(equalToConstant: 40)
@@ -62,6 +64,7 @@ final class RecordTableViewCell: UITableViewCell {
             recordLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             recordLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
+        contentView.autoresizingMask = .flexibleHeight
     }
     
     

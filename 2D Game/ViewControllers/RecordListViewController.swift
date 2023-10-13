@@ -25,7 +25,7 @@ final class RecordListViewController: UIViewController {
         
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: RecordTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = .leastNonzeroMagnitude
+        //tableView.estimatedRowHeight = .leastNonzeroMagnitude
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,6 +43,8 @@ extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.identifier, for: indexPath) as? RecordTableViewCell else { return UITableViewCell() }
         
         //let record = records.sorted()[indexPath.row]
+        
+        records.sort { $0.record.scores < $1.record.scores }
         
         let user = records[indexPath.row]
         
