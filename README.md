@@ -25,4 +25,4 @@
 
 <img width="300" alt="Снимок экрана 2023-10-16 в 17 06 32" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/a79c03dc-b449-4513-bfe6-8e44d69b4067">
 
-
+<img width="300" alt="Снимок экрана 2023-10-16 в 17 25 14" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/6e428680-3ea1-4a33-92f4-c1caa1f16813">
