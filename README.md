@@ -19,7 +19,7 @@
 <img width="300" alt="Снимок экрана 2023-10-16 в 17 06 17" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/26c57bfe-6b0b-4c08-9524-bb9dad15bf51">
 <img width="300" alt="Снимок экрана 2023-10-16 в 17 06 26" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/a8619476-b0cb-4267-a264-16b3cd8c0a81">
 <img width="300" alt="Снимок экрана 2023-10-16 в 17 03 47" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/a448013c-23e0-4bf7-8620-3af7728133db">
-<img width="482" alt="Снимок экрана 2023-10-16 в 17 23 23" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/bf4573e2-abbc-42a0-ae46-9d12270ad49c">
+<img width="300" alt="Снимок экрана 2023-10-16 в 17 23 23" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/bf4573e2-abbc-42a0-ae46-9d12270ad49c">
 
 <img width="300" alt="Снимок экрана 2023-10-16 в 17 06 11" src="https://github.com/IgorJu/2D-Game.-UIKit/assets/127942402/4ce85db9-9520-4101-99f9-8893492b118f">
 
