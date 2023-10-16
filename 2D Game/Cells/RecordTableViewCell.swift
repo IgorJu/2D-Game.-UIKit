@@ -14,21 +14,15 @@ final class RecordTableViewCell: UITableViewCell {
     static var identifier: String { "\(Self.self)" }
     
     private let recordLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20.0)
-        label.textColor = .black
-        
-        return label
+        settingsForCell()
     }()
     
     private let userNameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = .black
-        
-        return label
+        settingsForCell()
+    }()
+    
+    private let dataRecord: UILabel = {
+        settingsForCell()
     }()
     
     private let avatarIV: UIImageView = {
@@ -62,26 +56,32 @@ final class RecordTableViewCell: UITableViewCell {
         userNameLabel.text = nil
         avatarIV.image = nil
     }
-
+    
     
     //MARK: - Flow
     private func addSubviews() {
         contentView.addSubview(recordLabel)
         contentView.addSubview(userNameLabel)
+        contentView.addSubview(dataRecord)
         contentView.addSubview(avatarIV)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            dataRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            dataRecord.leadingAnchor.constraint(equalTo: avatarIV.trailingAnchor, constant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
             avatarIV.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             avatarIV.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            avatarIV.widthAnchor.constraint(equalToConstant: 40),
-            avatarIV.heightAnchor.constraint(equalToConstant: 40)
+            avatarIV.widthAnchor.constraint(equalToConstant: Constants.avatarSize),
+            avatarIV.heightAnchor.constraint(equalToConstant: Constants.avatarSize)
         ])
         
         NSLayoutConstraint.activate([
             userNameLabel.leadingAnchor.constraint(equalTo: avatarIV.trailingAnchor , constant: 50),
-            userNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            userNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
         ])
         
         NSLayoutConstraint.activate([
@@ -94,6 +94,7 @@ final class RecordTableViewCell: UITableViewCell {
         recordLabel.text = String(user.record.scores)
         userNameLabel.text = user.name
         avatarIV.image = StorageManager.shared.loadImage(name: user.imageName)
+        dataRecord.text = user.data
     }
     
 }

@@ -11,4 +11,5 @@ struct User: Codable {
     let name: String
     let record: Record
     let imageName: String
+    var data = currentDate()
 }

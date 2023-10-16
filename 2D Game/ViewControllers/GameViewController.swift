@@ -259,29 +259,15 @@ extension GameViewController {
             duration: (storageManager.loadDouble(key: .speed) ?? Constants.objectDuration) * 2 ,
             curve: .easeIn
         ) {
-            cloud.frame = CGRect(
-                x: cloud.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize * 3,
-                width: Constants.smallImageSize,
-                height: Constants.smallImageSize
-            )
-            cloud.alpha = 0
-            
-            secondCloud.frame = CGRect(
-                x: secondCloud.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize * 3,
-                width: Constants.smallImageSize,
-                height: Constants.smallImageSize
-            )
-            secondCloud.alpha = 0
-            
-            thirdCloud.frame = CGRect(
-                x: thirdCloud.frame.origin.x,
-                y: self.view.frame.height + Constants.bigImageSize * 3,
-                width: Constants.smallImageSize,
-                height: Constants.smallImageSize
+            self.clouds.forEach { cloud in
+                cloud.frame = CGRect(
+                    x: cloud.frame.origin.x,
+                    y: self.view.frame.height + Constants.bigImageSize * 3,
+                    width: Constants.smallImageSize,
+                    height: Constants.smallImageSize
                 )
-            thirdCloud.alpha = 0
+                cloud.alpha = 0
+            }
         }
         
         cloudAnimator?.addCompletion { [weak self] (_) in
@@ -290,7 +276,6 @@ extension GameViewController {
             self?.clouds.removeAll()
             self?.addClouds()
         }
-        
         cloudAnimator?.startAnimation()
     }
 }
