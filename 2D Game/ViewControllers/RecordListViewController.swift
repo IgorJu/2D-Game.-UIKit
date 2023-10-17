@@ -22,7 +22,17 @@ final class RecordListViewController: UIViewController {
         super.viewDidLoad()
         setActivityIndicator()
         fetchUserRecords()
-        
+        setTableView()
+    }
+    
+    //MARK: - Flow
+    private func setActivityIndicator() {
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+    }
+    
+   private func setTableView() {
         tableView.superview?.addVerticalGradientLayer(
             topColor: ConstantColors.endColor,
             bottomColor: ConstantColors.startColor
@@ -35,13 +45,7 @@ final class RecordListViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-    }
-    
-    //MARK: - Flow
-    private func setActivityIndicator() {
-        activityIndicator.startAnimating()
-        self.view.addSubview(activityIndicator)
-        activityIndicator.center = self.view.center
+
     }
     
     private func fetchUserRecords() {
@@ -60,6 +64,7 @@ final class RecordListViewController: UIViewController {
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,7 +72,10 @@ extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.identifier, for: indexPath) as? RecordTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RecordTableViewCell.identifier,
+            for: indexPath
+        ) as? RecordTableViewCell else { return UITableViewCell() }
         
         userRecords.sort { $0.record.scores > $1.record.scores }
         let user = userRecords[indexPath.row]
@@ -78,7 +86,7 @@ extension RecordListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -93,7 +93,7 @@ final class RecordTableViewCell: UITableViewCell {
     func configure(user: User) {
         recordLabel.text = String(user.record.scores)
         userNameLabel.text = user.name
-        avatarIV.image = StorageManager.shared.loadImage(name: user.imageName)
+        avatarIV.image = ImageManager.shared.getImage(key: user.imageName)
         dataRecord.text = user.data
     }
     
