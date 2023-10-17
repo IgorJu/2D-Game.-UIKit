@@ -53,6 +53,13 @@ final class GameViewController: UIViewController {
         }
     }
     
+    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+        isGameOver = true
+        finishGame()
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
     //MARK: - FLOW
     
     private func setAirplaneFrame() {
@@ -78,10 +85,10 @@ final class GameViewController: UIViewController {
             
             if planeX - enemyX < enemyPresentedFrame.width
                 && enemyX - planeX < enemyPresentedFrame.width
-                && planeY - enemyYBottom < 0
+                && planeY - enemyYBottom < .zero
                 && planeYBottom  - enemyY > -presentedFrame.height
-                || planeX < 30
-                || view.frame.width - planeX - presentedFrame.width < 30 {
+                || planeX < Constants.distanceFromTheSide
+                || view.frame.width - planeX - presentedFrame.width < Constants.distanceFromTheSide {
                 checkCollission = true
             }
         }
@@ -99,13 +106,7 @@ final class GameViewController: UIViewController {
         } else {
             enemies.forEach { enemy in
                 if checkCollision(enemy: enemy) {
-                    enemyAnimator?.stopAnimation(true)
-                    enemyAnimator?.finishAnimation(at: .current)
-                    
-                    cloudAnimator?.stopAnimation(true)
-                    cloudAnimator?.finishAnimation(at: .current)
-                    
-                    gameTimer?.invalidate()
+                    finishGame()
                     alert()
                 }
             }
@@ -162,6 +163,7 @@ final class GameViewController: UIViewController {
     }
     
     //MARK:  game life cycle, updating values
+    
     private func startGame() {
         gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGame), userInfo: nil, repeats: true)
         addEnemyPlanes()
@@ -175,8 +177,18 @@ final class GameViewController: UIViewController {
         gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateGame), userInfo: nil, repeats: true)
         addEnemyPlanes()
         addClouds()
-        
     }
+    
+    private func finishGame() {
+        enemyAnimator?.stopAnimation(true)
+        enemyAnimator?.finishAnimation(at: .current)
+        
+        cloudAnimator?.stopAnimation(true)
+        cloudAnimator?.finishAnimation(at: .current)
+        
+        gameTimer?.invalidate()
+    }
+    
     
     private func updateScoreLabel() {
         scoresLabel.text = "Счет: \(scores)"
@@ -222,47 +234,30 @@ extension GameViewController {
     
     //MARK:  Clouds
     private func addClouds() {
+        var stepBetweenClouds = 0.0
         
-        let cloud = UIImageView(image: UIImage(named: GameImageNames.cloud))
-        cloud.frame = CGRect(
-            x: Double.random(in: 30...280),
-            y: Constants.ySpawn,
-            width: Constants.smallImageSize,
-            height: Constants.smallImageSize
-        )
-        
-        clouds.append(cloud)
-        view.addSubview(cloud)
-        
-        let secondCloud = UIImageView(image: UIImage(named: GameImageNames.cloud))
-        secondCloud.frame = CGRect(
-            x: Double.random(in: 30...280),
-            y: Constants.ySpawn - Constants.bigImageSize * 3,
-            width: Constants.smallImageSize,
-            height: Constants.smallImageSize
-        )
-        clouds.append(secondCloud)
-        view.addSubview(secondCloud)
-
-        let thirdCloud = UIImageView(image: UIImage(named: GameImageNames.cloud))
-        thirdCloud.frame = CGRect(
-            x: Double.random(in: 30...280),
-            y: Constants.ySpawn - Constants.bigImageSize * 6,
-            width: Constants.smallImageSize,
-            height: Constants.smallImageSize
-        )
-        clouds.append(thirdCloud)
-        view.addSubview(thirdCloud)
-
+        for _ in 1...5 {
+            let cloud = UIImageView(image: UIImage(named: GameImageNames.cloud))
+            cloud.frame = CGRect(
+                x: Double.random(in: 30...280),
+                y: Constants.ySpawn - stepBetweenClouds,
+                width: Constants.smallImageSize,
+                height: Constants.smallImageSize
+            )
+            self.clouds.append(cloud)
+            self.view.addSubview(cloud)
+            
+            stepBetweenClouds += Constants.stepBetweenClouds
+        }
         
         cloudAnimator = UIViewPropertyAnimator(
-            duration: (storageManager.loadDouble(key: .speed) ?? Constants.objectDuration) * 2 ,
-            curve: .easeIn
+            duration: (storageManager.loadDouble(key: .speed) ?? Constants.objectDuration) * Constants.multiplierDuration ,
+            curve: .linear
         ) {
             self.clouds.forEach { cloud in
                 cloud.frame = CGRect(
                     x: cloud.frame.origin.x,
-                    y: self.view.frame.height + Constants.bigImageSize * 3,
+                    y: self.view.frame.height + stepBetweenClouds,
                     width: Constants.smallImageSize,
                     height: Constants.smallImageSize
                 )
@@ -271,7 +266,7 @@ extension GameViewController {
         }
         
         cloudAnimator?.addCompletion { [weak self] (_) in
-            cloud.removeFromSuperview()
+            self?.clouds.forEach { $0.removeFromSuperview() }
             self?.cloudAnimator = nil
             self?.clouds.removeAll()
             self?.addClouds()

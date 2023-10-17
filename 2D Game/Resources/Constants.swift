@@ -17,6 +17,9 @@ enum Constants {
     static let objectDuration = 6.0
     static let heightForRow = 80.0
     static let avatarSize = 60.0
+    static let stepBetweenClouds = 300.0
+    static let distanceFromTheSide = 30.0
+    static let multiplierDuration = 5.0
 }
 
 enum GameImageNames {

@@ -640,7 +640,13 @@
                             <constraint firstAttribute="trailing" secondItem="ftX-XS-LpH" secondAttribute="trailing" constant="20" id="vFu-bF-Rsm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iXf-my-Bl0"/>
+                    <navigationItem key="navigationItem" id="iXf-my-Bl0">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="I4V-cF-8TC">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="o5c-Ek-oue" id="m9K-3p-xP0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="airplaneView" destination="GZb-DF-Udg" id="Eks-Sw-261"/>
                         <outlet property="scoresLabel" destination="ftX-XS-LpH" id="WO3-8Q-Iik"/>
