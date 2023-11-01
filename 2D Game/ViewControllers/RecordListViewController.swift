@@ -57,7 +57,6 @@ final class RecordListViewController: UIViewController {
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.removeFromSuperview()
-
             }
         }
     }

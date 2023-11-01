@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class ImageManager {
+protocol IImageManager {
+    func getImage(key: String) -> UIImage?
+}
+
+final class ImageManager: IImageManager {
     
     private var images = [String: UIImage]()
-    
-    static let shared = ImageManager()
-    
-    private init() {}
     
     func getImage(key: String) -> UIImage? {
         if let image = images[key] {

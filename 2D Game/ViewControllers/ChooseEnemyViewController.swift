@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum EnemyImageNames {
+    static let spaceShip = "spaceship"
+    static let armyJet = "aircraft"
+    static let yellowPlane = "enemy"
+}
+
 final class ChooseEnemyViewController: UIViewController {
 
     //MARK: - Properties
@@ -49,9 +55,3 @@ final class ChooseEnemyViewController: UIViewController {
     }
 }
 
-//MARK: enum Enemy image names
-private enum EnemyImageNames {
-    static let spaceShip = "spaceship"
-    static let armyJet = "aircraft"
-    static let yellowPlane = "enemy"
-}

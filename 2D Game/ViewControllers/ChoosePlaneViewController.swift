@@ -7,6 +7,12 @@
 
 import UIKit
 
+private enum PlaneImageNames {
+    static let airbus = "plane"
+    static let jetPlane = "jetPlane"
+    static let greenPlane = "greenPlane"
+}
+
 final class ChoosePlaneViewController: UIViewController {
     
     //MARK: - Properties
@@ -47,12 +53,4 @@ final class ChoosePlaneViewController: UIViewController {
         gameManager.changePlaneImage(imageName: imageName)
         storageManager.saveString(imageName, key: .plane)
     }
-}
-
-//MARK: - Enum plane image names
-
-private enum PlaneImageNames {
-    static let airbus = "plane"
-    static let jetPlane = "jetPlane"
-    static let greenPlane = "greenPlane"
 }

@@ -83,13 +83,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		789CF3E02ADD6A8300E2912D /* Supports functions */ = {
+		789CF3E02ADD6A8300E2912D /* Support functions */ = {
 			isa = PBXGroup;
 			children = (
 				789CF3DE2ADD692700E2912D /* SettingsForCellLabel.swift */,
 				789CF3E12ADD6DD700E2912D /* DateFormatter.swift */,
 			);
-			path = "Supports functions";
+			path = "Support functions";
 			sourceTree = "<group>";
 		};
 		78ABF5192AC08FBE00F9CFE1 /* Models */ = {
@@ -144,7 +144,7 @@
 				78C5768E2ABCA513004274C4 /* ViewControllers */,
 				7848AB922AD88B060044F23E /* Cells */,
 				78ABF51E2AC0A21B00F9CFE1 /* Services */,
-				789CF3E02ADD6A8300E2912D /* Supports functions */,
+				789CF3E02ADD6A8300E2912D /* Support functions */,
 				78C5769B2ABCB404004274C4 /* Extensions */,
 				78ABF5192AC08FBE00F9CFE1 /* Models */,
 				78C5769C2ABCB485004274C4 /* Storyboards */,

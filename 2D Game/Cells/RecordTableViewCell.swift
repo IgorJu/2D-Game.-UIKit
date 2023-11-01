@@ -32,9 +32,12 @@ final class RecordTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    private let imageManager: IImageManager
+    
     //MARK: - Override Methods
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.imageManager = ImageManager()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setConstraints()
@@ -93,7 +96,7 @@ final class RecordTableViewCell: UITableViewCell {
     func configure(user: User) {
         recordLabel.text = String(user.record.scores)
         userNameLabel.text = user.name
-        avatarIV.image = ImageManager.shared.getImage(key: user.imageName)
+        avatarIV.image = imageManager.getImage(key: user.imageName)
         dataRecord.text = user.data
     }
     
